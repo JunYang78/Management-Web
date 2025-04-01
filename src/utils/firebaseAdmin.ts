@@ -1,15 +1,15 @@
-// utils/firebaseAdmin.ts
 import admin from 'firebase-admin';
-import serviceAccount from './serviceAccountKey.json'; // Update the path accordingly
+import fs from 'fs';
+import path from 'path';
 
 if (!admin.apps.length) {
+  const serviceAccount = process.env.FIREBASE_ADMIN_CREDENTIALS
+    ? JSON.parse(process.env.FIREBASE_ADMIN_CREDENTIALS)
+    : JSON.parse(
+        fs.readFileSync(path.resolve('firebase/serviceAccountKey.json'), 'utf8')
+      );
+
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-    // Optionally, add the databaseURL if you're using Realtime Database:
-    // databaseURL: "https://<YOUR_PROJECT_ID>.firebaseio.com"
+    credential: admin.credential.cert(serviceAccount),
   });
 }
-
-const db = admin.firestore();
-export default db;
-
