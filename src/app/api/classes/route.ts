@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import db from '@/utils/firebaseAdmin'; // or use relative path if alias isn't working
 
+const allowedOrigin =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://ck-management.vercel.app';
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': allowedOrigin,
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+
 // GET: Fetch all classes
 export async function GET(_req: NextRequest) {
   try {
@@ -10,10 +22,16 @@ export async function GET(_req: NextRequest) {
       ...doc.data(),
     }));
 
-    return NextResponse.json(classes, { status: 200 });
+    return NextResponse.json(classes, {
+      status: 200,
+      headers: corsHeaders,
+    });
   } catch (error) {
     console.error('Error fetching classes:', error);
-    return NextResponse.json({ error: 'Failed to fetch classes' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch classes' }, {
+      status: 500,
+      headers: corsHeaders,
+    });
   }
 }
 
@@ -27,9 +45,23 @@ export async function POST(req: NextRequest) {
     };
 
     const docRef = await db.collection('classes').add(data);
-    return NextResponse.json({ id: docRef.id }, { status: 201 });
+    return NextResponse.json({ id: docRef.id }, {
+      status: 201,
+      headers: corsHeaders,
+    });
   } catch (error) {
     console.error('Error adding document:', error);
-    return NextResponse.json({ error: 'Failed to add class' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to add class' }, {
+      status: 500,
+      headers: corsHeaders,
+    });
   }
+}
+
+// Handle preflight CORS requests
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
 }
