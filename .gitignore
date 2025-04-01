@@ -32,7 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-src/utils/management-app-5fbfa-firebase-adminsdk-fbsvc-cb7b195b70.json
+firebase/serviceAccountKey.json
 # vercel
 .vercel
 
