@@ -1,0 +1,119 @@
+/* src/components/ClassInfo.css */
+.class-container {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.header {
+  text-align: center;
+}
+
+.class-name {
+  font-size: 32px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.class-description {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.separator {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.activities-section {
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.activities-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* --- Common Activity Group for Both CU and FCU --- */
+.activity-group {
+  margin-bottom: 1rem;
+}
+
+/* Group header: can be either CU part name or FCU student name */
+.activity-group h3 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Indent the list of activities for both sections */
+.activities-list {
+  margin-left: 2rem;  /* This adds the indentation */
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0;
+}
+
+.activities-list li {
+  padding: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* --- FCU Section Specific --- */
+.students-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* If you wish the student container to also be indented, you can wrap the student activities in an activity-group as well */
+.student-item {
+  margin: 15px 0;
+  /* Do not add left indent here if you want the student name flush,
+     but the activities will be indented via .activities-list */
+}
+
+.student-name {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* --- Buttons and Messages --- */
+.button-group {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.back-btn {
+  background-color: #f44336;
+  color: #fff;
+  text-decoration: none;
+}
+
+.loading,
+.error,
+.no-data,
+.no-activities,
+.no-students {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+}

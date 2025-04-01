@@ -1,0 +1,86 @@
+/* Container for the entire page */
+.add-activity-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style for the class selector area */
+  .class-selector {
+    margin-bottom: 20px;
+  }
+  
+  /* Card that shows the selected class details and form */
+  .class-details-card {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  /* Header inside the card */
+  .class-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .class-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    background-color: #4caf50;
+    color: #fff;
+    margin-top: 10px;
+  }
+  
+  .back-btn {
+    background-color: #f44336;
+    color: #fff;
+    margin-top: 10px;
+  }
+  
+  /* Error messages */
+  .error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
