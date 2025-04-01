@@ -25,7 +25,7 @@ interface ClassItem {
   activities?: Activity[];
 }
 
-const BASE_URL: string = process.env.API_BASE_URL || "http://localhost:3000";
+const BASE_URL: string = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 
 const AddActivity: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState<ClassItem | null>(null);
