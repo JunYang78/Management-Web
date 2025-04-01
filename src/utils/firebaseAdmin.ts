@@ -13,3 +13,6 @@ if (!admin.apps.length) {
     credential: admin.credential.cert(serviceAccount),
   });
 }
+
+const db = admin.firestore();
+export default db;
