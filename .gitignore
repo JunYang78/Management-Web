@@ -39,3 +39,5 @@ src/utils/management-app-5fbfa-firebase-adminsdk-fbsvc-cb7b195b70.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

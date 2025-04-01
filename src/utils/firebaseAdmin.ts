@@ -1,6 +1,6 @@
 // utils/firebaseAdmin.ts
 import admin from 'firebase-admin';
-import serviceAccount from './management-app-5fbfa-firebase-adminsdk-fbsvc-cb7b195b70.json'; // Update the path accordingly
+const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_CREDENTIALS!);
 
 if (!admin.apps.length) {
   admin.initializeApp({
