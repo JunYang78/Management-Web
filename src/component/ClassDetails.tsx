@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import './css/ClassInfo.css';
+import './css/Full.css';
 
 interface Activity {
   name: string;
@@ -87,7 +87,7 @@ const ClassDetails: React.FC = () => {
 
       {/* CU Activities Section */}
       <div className="activities-section">
-        <h2>CU Parts</h2>
+        <h2 className="student-name">CU Parts</h2>
         <hr />
         {classData.activities && classData.activities.length > 0 ? (
           Object.keys(groupedActivities).map((part, idx) => (
@@ -111,13 +111,13 @@ const ClassDetails: React.FC = () => {
 
       {/* FCU Section */}
       <div className="activities-section">
-        <h2>FCUs</h2>
+        <h2 className="student-name">FCUs</h2>
         <hr />
         {classData.students && classData.students.length > 0 ? (
           <div className="students-container">
             {classData.students.map((student, index) => (
               <div key={index} className="activity-group">
-                <h3 className="student-name">{student.name}</h3>
+                <h3>{student.name}</h3>
                 {student.participatedActivities?.length ? (
                   <ul className="activities-list">
                     {student.participatedActivities.map((act, idx) => (

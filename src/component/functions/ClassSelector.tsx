@@ -82,7 +82,7 @@ const ClassSelector: React.FC<ClassSelectorProps> = ({ onSelect }) => {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-      <label style={{ marginRight: '10px' }}>Select CU:</label>
+      <label className="student-name" style={{ marginRight: '10px' }}>Select CU:</label>
       <input
         type="text"
         placeholder="Search..."

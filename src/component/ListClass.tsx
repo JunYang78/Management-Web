@@ -3,7 +3,7 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import './css/ListClass.css';
+import './css/Full.css';
 
 interface ClassItem {
   id: string;
@@ -66,7 +66,7 @@ const Listclass: React.FC = () => {
       <Link href="/searcher" className="no-underline">
         <button className="btn back-btn">Back</button>
       </Link>
-      <h1>CU List</h1>
+      <h1 className="student-name">CU List</h1>
       {error && <p className="error">{error}</p>}
       <div className="card">
         <div className="button-group" style={{ marginBottom: '20px' }}>

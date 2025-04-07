@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import "./css/EditClass.css";
+import "./css/Full.css";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 
@@ -29,6 +29,7 @@ const EditClass: React.FC = () => {
   const [parts, setParts] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [newPart, setNewPart] = useState(""); // state for new part input
 
   const [editGlobalModal, setEditGlobalModal] = useState({
     show: false,
@@ -99,16 +100,37 @@ const EditClass: React.FC = () => {
     }
   };
 
+  const deletePart = (partToDelete: string) => {
+    if (window.confirm(`Are you sure you want to delete the part "${partToDelete}"? All associated activities will be removed.`)) {
+      // Remove the part from the parts list
+      const updatedParts = parts.filter((part) => part !== partToDelete);
+      setParts(updatedParts);
+      // Remove activities associated with this part
+      const updatedActivities = globalActivities.filter((act) => act.part !== partToDelete);
+      setGlobalActivities(updatedActivities);
+      // Update the server with the new parts and activities
+      updateClassOnServer({ parts: updatedParts, activities: updatedActivities });
+    }
+  };
+
+  const addPart = () => {
+    if (newPart.trim() === "") return;
+    const updatedParts = [...parts, newPart.trim()];
+    setParts(updatedParts);
+    updateClassOnServer({ parts: updatedParts });
+    setNewPart("");
+  };
+
   if (loading) return <p>Loading...</p>;
 
   return (
     <div className="edit-class-container">
-      <h2>Edit {className}</h2>
+      <h2 className="student-name">Edit {className}</h2>
       {error && <p className="error">{error}</p>}
 
       <div className="card">
         <fieldset className="section">
-          <legend>CU Details</legend>
+          <legend className="student-name">CU Details</legend>
           <div className="form-group">
             <label>Name:</label>
             <input
@@ -134,13 +156,22 @@ const EditClass: React.FC = () => {
         </fieldset>
 
         <fieldset className="section">
-          <legend>CU Parts</legend>
+          <legend className="student-name">CU Parts</legend>
           {parts.length > 0 ? (
             parts.map((part) => {
               const partActivities = globalActivities.filter((act) => act.part === part);
               return (
                 <div key={part} className="part-group">
-                  <h4>{part}</h4>
+                  <div className="part-header">
+                    <h4>{part}</h4>
+                    <button
+                      type="button"
+                      className="btn delete-btn"
+                      onClick={() => deletePart(part)}
+                    >
+                      Delete Part
+                    </button>
+                  </div>
                   {partActivities.length > 0 ? (
                     <ul className="list">
                       {partActivities.map((act, idx) => (
@@ -181,10 +212,23 @@ const EditClass: React.FC = () => {
           ) : (
             <p>No parts defined.</p>
           )}
+
+          {/* New Add Part Section */}
+          <div className="add-part">
+            <input
+              type="text"
+              placeholder="Enter new part name"
+              value={newPart}
+              onChange={(e) => setNewPart(e.target.value)}
+            />
+            <button type="button" className="btn" onClick={addPart}>
+              Add Part
+            </button>
+          </div>
         </fieldset>
 
         <fieldset className="section">
-          <legend>FCUs</legend>
+          <legend className="student-name">FCUs</legend>
           {students.length > 0 ? (
             <ul className="list">
               {students.map((student, sIdx) => (
@@ -200,11 +244,13 @@ const EditClass: React.FC = () => {
                     })
                   }
                 >
-                  <strong>{student.name}</strong>
+                  <label>{student.name}</label>
                   {(student.participatedActivities ?? []).length > 0 && (
                     <ul className="nested-list">
                       {student.participatedActivities!.map((act, aIdx) => (
-                        <li key={`${act.name}-${act.date}-${aIdx}`}>{act.name} — {formatDate(act.date)}</li>
+                        <li key={`${act.name}-${act.date}-${aIdx}`}>
+                          {act.name} — {formatDate(act.date)}
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -225,7 +271,6 @@ const EditClass: React.FC = () => {
       {editGlobalModal.show && (
         <div className="modal-overlay">
           <div className="modal">
-            <h3>{editGlobalModal.index === null ? "Add CU Activity" : "Edit CU Activity"}</h3>
             <div className="form-group">
               <label>Activity Name:</label>
               <input
@@ -305,7 +350,6 @@ const EditClass: React.FC = () => {
       {editStudentModal.show && (
         <div className="modal-overlay">
           <div className="modal">
-            <h3>Edit FCU</h3>
             <div className="form-group">
               <label>FCU Name:</label>
               <input
@@ -381,6 +425,7 @@ const EditClass: React.FC = () => {
                 type="button"
                 className="btn delete-btn"
                 onClick={async () => {
+                  if (!window.confirm("Are you sure you want to delete this FCU?")) return;
                   const updated = students.filter((_, i) => i !== editStudentModal.studentIndex);
                   setStudents(updated);
                   setEditStudentModal({ show: false, studentIndex: null, name: "", participatedActivities: [] });

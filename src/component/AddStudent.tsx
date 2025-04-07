@@ -3,7 +3,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import Link from 'next/link';
 import ClassSelector from './functions/ClassSelector'
-import './css/AddStudent.css';
+import './css/Full.css';
 
 interface ClassItem {
   id: string;
@@ -103,7 +103,6 @@ const AddStudent: React.FC = () => {
 
   return (
     <div className="add-student-container">
-      <h2>Add FCU</h2>
       
       {/* Class Selector */}
       <div className="class-selector">
@@ -113,11 +112,11 @@ const AddStudent: React.FC = () => {
       {/* Section for displaying existing FCUs for the selected CU */}
       {selectedClass && (
         <div className="existing-fcus-section">
-          <h3>Existing FCUs</h3>
+          <h3 className="student-name">Existing FCUs</h3>
           {existingFCUs.length > 0 ? (
             <ul>
               {existingFCUs.map((fcu, index) => (
-                <li key={fcu.id || index}>{fcu.name}</li>
+                <li key={fcu.id || index}> - {fcu.name}</li>
               ))}
             </ul>
           ) : (

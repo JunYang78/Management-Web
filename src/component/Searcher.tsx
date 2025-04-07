@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { signOut } from 'firebase/auth';
 import { auth } from '../utils/firebase'; // Make sure this path is correct
 import Link from 'next/link';
-import './css/Searcher.css';
+import './css/Full.css';
 
 interface ClassItem {
   id: string;
@@ -75,7 +75,7 @@ const Searcher: React.FC = () => {
       <button className="btn logout-btn" onClick={handleLogout}>
         Logout
       </button>
-      <h1>Search CUs</h1>
+      <h1 className='student-name'>Search CUs</h1>
       <div className="card" style={{ padding: '20px' }}>
         <div
           className="search-bar"

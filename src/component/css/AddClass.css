@@ -1,12 +1,6 @@
 .add-class-container {
-  max-width: 700px;
-  margin: 30px auto;
+  position: relative; /* Makes this container the reference for absolutely positioned elements */
   padding: 20px;
-  background: #fefefe;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
 }
 
 .section {
@@ -121,8 +115,6 @@
   background-color: #2196f3;
   color: #fff;
   margin-top: 20px;
-  /* Remove width: 100% to make the button auto-size */
-  /* Optionally, set a max-width if desired */
   max-width: 200px;
 }
 

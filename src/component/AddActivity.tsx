@@ -3,7 +3,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Link from 'next/link';
 import ClassSelector from './functions/ClassSelector';
-import './css/AddActivity.css';
+import './css/Full.css';
 
 interface Activity {
   name: string;
@@ -123,7 +123,6 @@ const AddActivity: React.FC = () => {
 
   return (
     <div className="add-activity-container">
-      <h2>Add Activity</h2>
       <div className="class-selector">
         <ClassSelector
           onSelect={(cls: ClassItem) => {

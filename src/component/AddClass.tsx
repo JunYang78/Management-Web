@@ -2,7 +2,7 @@
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Link from 'next/link';
-import './css/AddClass.css';
+import './css/Full.css';
 
 const BASE_URL: string = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 
@@ -58,12 +58,11 @@ const AddClass: React.FC = () => {
 
   return (
     <div className="add-class-container">
-      <h2>Add New CU</h2>
       <div>
         <form onSubmit={handleSubmit}>
           {/* CU Details */}
           <fieldset className="section">
-            <legend>CU Details</legend>
+            <legend className="student-name">CU Details</legend>
             <div className="form-group">
               <label>CU Name:</label>
               <input
@@ -86,7 +85,7 @@ const AddClass: React.FC = () => {
 
           {/* CU Parts */}
           <fieldset className="section">
-            <legend>CU Parts</legend>
+            <legend className="student-name">CU Parts</legend>
             <div className="form-group">
               <label>Part Name: </label>
               <input
@@ -112,11 +111,10 @@ const AddClass: React.FC = () => {
                 </ul>
               </div>
             )}
-            <button type="submit" className="btn submit-btn">
+          </fieldset>
+          <button type="submit" className="btn submit-btn">
               Add CU
             </button>
-          </fieldset>
-
           {message && <p className="message">{message}</p>}
         </form>
       </div>
